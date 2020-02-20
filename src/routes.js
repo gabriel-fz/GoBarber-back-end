@@ -8,6 +8,7 @@ import FileController from './app/controllers/FileController';
 import ProviderController from './app/controllers/ProviderController';
 import AppointmentController from './app/controllers/AppointmentController';
 import ScheduleController from './app/controllers/ScheduleController';
+import NotificationController from './app/controllers/NotificationController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -37,6 +38,12 @@ routes.post('/appointments', AppointmentController.store);
 
 // rota de listagem de agendamentos para o prestador
 routes.get('/schedule', ScheduleController.index);
+
+// rota de listagem de notificações de prestador de serviço
+routes.get('/notifications', NotificationController.index);
+
+// rota de marcar notificação como lida
+routes.put('/notifications/:id', NotificationController.update);
 
 // rota de upload de imagem
 routes.post('/files', upload.single('file'), FileController.store);
