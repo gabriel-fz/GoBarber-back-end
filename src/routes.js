@@ -9,6 +9,7 @@ import ProviderController from './app/controllers/ProviderController';
 import AppointmentController from './app/controllers/AppointmentController';
 import ScheduleController from './app/controllers/ScheduleController';
 import NotificationController from './app/controllers/NotificationController';
+import AvailableController from './app/controllers/AvailableController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -30,11 +31,17 @@ routes.put('/users', UserController.update);
 // rota de listagem de prestadores de serviço
 routes.get('/providers', ProviderController.index);
 
+// rota de listagem de horários disponíveis do dia
+routes.get('/providers/:providerId/available', AvailableController.index);
+
 // rota de listagem de agendamento
 routes.get('/appointments', AppointmentController.index);
 
 // rota de agendamento
 routes.post('/appointments', AppointmentController.store);
+
+// rota de cancelamento de agendamento
+routes.delete('/appointments/:id', AppointmentController.delete);
 
 // rota de listagem de agendamentos para o prestador
 routes.get('/schedule', ScheduleController.index);
